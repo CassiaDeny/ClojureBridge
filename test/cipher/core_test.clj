@@ -27,7 +27,7 @@
          \c    2
          \d    3)
 
- #_ (fact "takes a number between 0 and 25 (inclusive) and returns the corresponding lowercase letter."
+ (fact "takes a number between 0 and 25 (inclusive) and returns the corresponding lowercase letter."
       (tabular
         (core/to-char ?int) => ?result
         ?int ?result
@@ -63,4 +63,12 @@
        (fact "Word gtxyts is apple when decrypted with shift 10 positions"
              (core/caesar-decrypt "mvytebolbsnqo" 10) => "clojurebridge"))
 
+(facts "Takes a string with any symbols in it, and returns a string of only letters in it, all letters converted to lowercase"
+  (fact "Get \"Hello, friend!\" and return \"hellofriend\""
+        (core/get-letters "Hello, friend!") => "hellofriend"))
 
+(fact "Get encrypted text using caesar-encrypt"
+      (fact "Encrypt \"Hello, friend!\" end get return \"mjqqtkwnjsi\" when key equals 5"
+        (core/encrypt-text "Hello, friend!" 5) => "mjqqtkwnjsi")
+      (fact "Decrypt \"mjqqtkwnjsi\" end get return \"Hello, friend!\" when key equals 5"
+        (core/decrypt-text "mjqqtkwnjsi" 5) => "hellofriend"))

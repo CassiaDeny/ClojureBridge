@@ -11,6 +11,9 @@
 (defn times10PlusY [x y]
   (+(* x 10) y))
 
+;;Caesar cipher
+;;Letter shift
+
 (defn to-int
   "takes a lowercase letter character and returns its position in the alphabet: a = 0, b = 1, etc."
   [letter-char]
@@ -42,11 +45,32 @@
   (let [ revert-pos (* -1 positions)]
     (apply str (mapv #(shift % revert-pos) word))))
 
+;;Working with strings that have other symbols
+(defn transfor-to-lower [text]
+  (clojure.string/lower-case text))
 
+(defn transfor-to-str [text]
+  (apply str text))
 
+(defn get-only-letters [text]
+  (filterv #(Character/isLetter %) text))
 
+(defn get-letters
+  "Takes a string with any symbols in it, and returns a string of only letters in it, all letters converted to lowercase"
+  [text]
+  (transfor-to-lower (transfor-to-str (get-only-letters text))))
 
+(defn encrypt-text
+  "Get encrypted text using caesar-encrypt"
+  [text key]
+  (println "crypt" (caesar-encrypt (get-letters text) key))
+  (caesar-encrypt (get-letters text) key))
 
+(defn decrypt-text
+  "Get decrypted text using caesar-decrypt"
+  [text key]
+  (println "decrypt" (caesar-decrypt text key))
+  (caesar-decrypt text key))
 
 
 
